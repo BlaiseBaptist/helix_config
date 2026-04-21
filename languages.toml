@@ -1,15 +1,15 @@
 [[language]]
-name = "matlab"
-scope = "source.m"
 file-types = ["m"]
 language-servers = ["matlab-ls"]
+name = "matlab"
+scope = "source.m"
 [language-server.matlab-ls]
-command = "matlab-langserver"
 args = ["--stdio"]
+command = "matlab-langserver"
 [[language]]
-name = "xml"
-language-servers = ["efm-xml"]
 auto-format = true
+language-servers = ["efm-xml"]
+name = "xml"
 [language-server.efm-xml.config]
 documentFormatting = true
 languages = { xml = [
@@ -21,80 +21,80 @@ languages = { xml = [
 [language-server.efm-xml]
 command = "efm-langserver"
 [[language]]
-name = "riscv"
-scope = "source.asm"
-injection-regex = "asm"
-file-types = ["riscv", "asm", "s"]
-roots = []
-language-servers = ["asm-lsp"]
+auto-format = true
 comment-token = "#"
+file-types = ["riscv", "asm", "s"]
 formatter = { command = "awk", args = [
   "{ gsub(/^[ \t]+/, \"\"); if ($0 ~ /^[A-Za-z0-9_.]+:|^$/) { print $0; next } match($0, /[^ \t]+/); m = substr($0, RSTART, RLENGTH); r = substr($0, RSTART + RLENGTH); gsub(/^[ \t]+/, \"\", r); n = split(r, c, \"#\"); args = c[1]; gsub(/[ \t]+$/, \"\", args); printf \"\\t%%-8s %%-24s %%s\\n\", m, args, (n > 1 ? \"#\" c[2] : \"\") }",
 ] }
-auto-format = true
+injection-regex = "asm"
+language-servers = ["asm-lsp"]
+name = "riscv"
+roots = []
+scope = "source.asm"
 [[grammar]]
 name = "riscv"
 source = { git = "https://github.com/omeyenburg/tree-sitter-riscv.git", rev = "main" }
 [language-server.asm-lsp]
 command = "asm-lsp"
 [[language]]
-name = "verilog"
-language-servers = ["verible-ls"]
 auto-format = true
 formatter = { command = "verible-verilog-format", args = [
   "--stdin_name",
   "%{buffer_name}",
   "-",
 ] }
+language-servers = ["verible-ls"]
+name = "verilog"
 [language-server.verible-ls]
-command = "verible-verilog-ls"
 args = ["--rules_config_search"]
+command = "verible-verilog-ls"
 [[language]]
-name = "java"
-language-servers = ["jdtls"]
-roots = ["pom.xml", ".git"]
 auto-format = true
+language-servers = ["jdtls"]
+name = "java"
+roots = ["pom.xml", ".git"]
 [language-server.jdtls]
+autobuild.enabled = false
 command = "jdtls-wrapper"
 java.import.generatesMetadataFilesAtProjectRoot = false
-autobuild.enabled = false
 project.outputPath = "bin"
 [language-server.jdtls.config]
-java.inlayHints.parameterNames.enabled = "all"
 extendedClientCapabilities.classFileContentsSupport = true
+java.inlayHints.parameterNames.enabled = "all"
 [[language]]
-name = "rust"
 formatter = { command = "rustfmt" }
+name = "rust"
 [[language]]
-name = "c"
 auto-format = true
+name = "c"
 [language-server.clangd]
-command = "clangd"
 args = [
   "--path-mappings=/home/blaise/Documents/csse332-labs-baptisbc/=/Users/blaise/remote/",
   "--stdio",
 ]
+command = "clangd"
 [[language]]
-name = "markdown"
-formatter = { command = "deno", args = ["fmt", "-", "--ext", "md"] }
 auto-format = true
+formatter = { command = "deno", args = ["fmt", "-", "--ext", "md"] }
 language-servers = ["mdpls"]
+name = "markdown"
 [language-server.mdpls]
 command = "mdpls"
 config = { markdown.preview.auto = true }
 [[language]]
+comment-tokens = "#"
+file-types = ["uml"]
+indent = { tab-width = 2, unit = "  " }
 name = "uml"
 scope = "text.uml"
-file-types = ["uml"]
-comment-tokens = "#"
-indent = { tab-width = 2, unit = "  " }
 [[grammer]]
 name = "uml"
 source = { git = "https://github.com/ahlinc/tree-sitter-plantuml.git" }
 [[language]]
-name = "python"
 auto-format = true
 language-servers = ["pylsp"]
+name = "python"
 [language-server.pylsp]
 command = "pylsp"
 timeout = 60
@@ -104,38 +104,38 @@ skip_token_initialization = true
 preload = { enabled = false }
 rope_autoimport = { enabled = false }
 [[language]]
-name = "latex"
-language-servers = ["texlab"]
 formatter = { command = "prettier", args = ["--parser=latex-parser"] }
+language-servers = ["texlab"]
+name = "latex"
 [language-server.texlab.config]
-chktex.onEdit = true
 build = { executable = "latexmk", args = [
   "-pdf",
   "-interaction=nonstopmode",
   "-synctex=1",
   "%f",
 ], onSave = true }
+chktex.onEdit = true
 forwardSearch = { executable = "zathura", args = [
   "--synctex-forward",
   "%l:1:%f",
   "%p",
 ] }
 [[language]]
-name = "json"
 formatter = { command = 'prettier', args = ["--parser", "json"] }
+name = "json"
 [[language]]
-name = "typescript"
 formatter = { command = "npx", args = ["prettier", "--parser", "typescript"] }
 language-servers = ["typescript-language-server"]
+name = "typescript"
 [[language]]
-name = "javascript"
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
+name = "javascript"
 [language-server.taplo]
-command = "taplo"
 args = ["lsp", "stdio"]
+command = "taplo"
 [language-server.taplo.config.formatting]
 reorder_keys = true
 [[language]]
-name = "toml"
 auto-format = true
 language-servers = ["taplo"]
+name = "toml"
