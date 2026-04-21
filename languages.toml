@@ -68,12 +68,7 @@ name = "rust"
 [[language]]
 auto-format = true
 name = "c"
-[language-server.clangd]
-args = [
-  "--path-mappings=/home/blaise/Documents/csse332-labs-baptisbc/=/Users/blaise/remote/",
-  "--stdio",
-]
-command = "clangd"
+roots = ["compile_commands.json", ".git"]
 [[language]]
 auto-format = true
 formatter = { command = "deno", args = ["fmt", "-", "--ext", "md"] }
