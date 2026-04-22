@@ -55,13 +55,11 @@ language-servers = ["jdtls"]
 name = "java"
 roots = ["pom.xml", ".git"]
 [language-server.jdtls]
-autobuild.enabled = false
-command = "jdtls-wrapper"
-java.import.generatesMetadataFilesAtProjectRoot = false
-project.outputPath = "bin"
+command = "jdtls"
+# Use a specific path for your workspace data
+args = ["-data", "/Users/blaise/.cache/jdtls/workspace"]
 [language-server.jdtls.config]
-extendedClientCapabilities.classFileContentsSupport = true
-java.inlayHints.parameterNames.enabled = "all"
+java = { project = { outputPath = "target/classes" } }
 [[language]]
 formatter = { command = "rustfmt" }
 name = "rust"
