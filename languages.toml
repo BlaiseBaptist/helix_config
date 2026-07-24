@@ -7,8 +7,15 @@ scope = "source.m"
 args = ["--stdio"]
 command = "matlab-langserver"
 [[language]]
+name = "bash"
+file-types = [{ glob = "**/sway/config" }, { glob = "**/i3/config" }]
+comment-token = "#"
+formatter = { command = "/home/blaise/.config/helix/sway-fmt" }
+auto-format = true
+[[language]]
 auto-format = true
 language-servers = ["efm-xml"]
+file-types = ["xml", "urdf", "sdf", "xacro"]
 name = "xml"
 [language-server.efm-xml.config]
 documentFormatting = true
